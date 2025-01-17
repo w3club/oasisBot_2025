@@ -8,11 +8,7 @@ export function readToken(filePath) {
 
             const tokens = data.split('\n').map(token => token.trim()).filter(token => token);
             
-            if (tokens.length > 0) {
-                resolve(tokens);  
-            } else {
-                reject('No tokens found');
-            }
+            resolve(tokens);  
         });
     });
 }

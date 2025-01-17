@@ -28,11 +28,11 @@ async function setup() {
   const proxies = await readToken("proxy.txt");
   const isLogin = await loginFromFile('accounts.txt');
 
-  if (proxies.length === 0) { 
-    logger('No proxies found in proxy.txt Exiting...', "", "error");
-    rl.close();
-    return; 
-  }
+  // if (proxies.length === 0) { 
+  //   logger('No proxies found in proxy.txt Exiting...', "", "error");
+  //   rl.close();
+  //   return; 
+  // }
   if (!isLogin) {
     logger("No accounts were successfully logged in. Exiting...", "", "error");
     rl.close();

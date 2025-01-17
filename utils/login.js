@@ -8,7 +8,7 @@ async function registerUser(email, password) {
     const payload = {
         email: email,
         password: password,
-        referralCode: "zlketh"
+        referralCode: "139ed56e993b1c44"
     }
     const headers = {
         'Content-Type': 'application/json',

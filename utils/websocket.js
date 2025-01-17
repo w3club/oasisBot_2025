@@ -1,5 +1,6 @@
 import WebSocket from "ws";
 import { HttpsProxyAgent } from "https-proxy-agent";
+import { SocksProxyAgent } from "socks-proxy-agent"; // 新增导入
 import { generateRandomId, generateRandomSystemData } from "./system.js";
 import { delay } from "./file.js";
 import { logger } from "./logger.js";
@@ -7,8 +8,11 @@ import { logger } from "./logger.js";
 export async function createConnection(token, proxy = null) {
     const wsOptions = {};
     if (proxy) {
-        logger(`Connect Using proxy: ${proxy}`);
-        wsOptions.agent = new HttpsProxyAgent(proxy);
+        if (proxy.startsWith("socks5://")) {
+            wsOptions.agent = new SocksProxyAgent(proxy); // 使用 SOCKS5 代理
+        } else {
+            wsOptions.agent = new HttpsProxyAgent(proxy); // 使用 HTTPS 代理
+        }
     }
 
     const socket = new WebSocket(`wss://ws.oasis.ai/?token=${token}`, wsOptions);
